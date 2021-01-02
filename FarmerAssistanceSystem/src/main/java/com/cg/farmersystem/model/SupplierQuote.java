@@ -4,39 +4,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "quote")
 public class SupplierQuote {
 	@Id
+	@NotNull(message = "Value cannot be Null")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotNull(message = "Value cannot be Null")
 	private int quoteId;
 
-	private String quotedProduct;
+	@NotNull(message = "Value cannot be Null")
+	private String userName;
+
+	@NotNull(message = "Value cannot be Null")
+	private String productName;
+
+	@NotNull(message = "Value cannot be Null")
 	private int quantity;
-	private int quote_Price;
+
+	@NotNull(message = "Value cannot be Null")
+	private int quotePrice;
 
 	@ManyToOne
-	//@JoinColumn(name = "productName")
+	@JoinColumn(name = "productId")
 	private Product product;
 
 	public SupplierQuote() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public SupplierQuote(int quoteId, String quotedProduct, int quote_Price, int quantity) {
-		super();
-		this.quoteId = quoteId;
-
-		this.quotedProduct = quotedProduct;
-		this.quote_Price = quote_Price;
-		this.quantity = quantity;
-	}
-
-	// getters and setters for private variables
 	public int getQuoteId() {
 		return quoteId;
 	}
@@ -45,14 +46,21 @@ public class SupplierQuote {
 		this.quoteId = quoteId;
 	}
 
-	public String getQuotedProduct() {
-		return quotedProduct;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setQuotedProduct(String quotedProduct) {
-		this.quotedProduct = quotedProduct;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
 	public int getQuantity() {
 		return quantity;
@@ -62,13 +70,31 @@ public class SupplierQuote {
 		this.quantity = quantity;
 	}
 
-	public int getQuote_Price() {
-		return quote_Price;
+	public int getQuotePrice() {
+		return quotePrice;
 	}
 
-	public void setQuote_Price(int quote_Price) {
-		this.quote_Price = quote_Price;
+	public void setQuotePrice(int quotePrice) {
+		this.quotePrice = quotePrice;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public SupplierQuote(int quoteId, String userName, String productName, int quantity, int quotePrice,
+			Product product) {
+		super();
+		this.quoteId = quoteId;
+		this.userName = userName;
+		this.productName = productName;
+		this.quantity = quantity;
+		this.quotePrice = quotePrice;
+		this.product = product;
+	}
 
 }

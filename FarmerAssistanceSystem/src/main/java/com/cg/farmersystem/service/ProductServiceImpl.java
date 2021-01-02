@@ -13,38 +13,31 @@ import com.cg.farmersystem.repository.ProductJpaRepository;
 
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService{
-	
+public class ProductServiceImpl implements ProductService {
+
 	@Autowired
 	private ProductJpaRepository productJpaRepository;
 
 	@Override
 	public List<Product> getAllProduct() {
-		// TODO Auto-generated method stub
-		return  productJpaRepository.findAll();
+		return productJpaRepository.findAll();
 	}
-
-	
 
 	@Override
 	public Optional<Product> getProductById(Integer productId) {
-		// TODO Auto-generated method stub
-		return  productJpaRepository.findById(productId);
+		return productJpaRepository.findById(productId);
 	}
 
 	@Override
 	public void deleteProduct(Product productId) {
-		// TODO Auto-generated method stub
 		productJpaRepository.delete(productId);
 	}
 
 	@Override
 	public List<Product> saveProduct(Product product) {
-		// TODO Auto-generated method stub
 		productJpaRepository.save(product);
 
 		return productJpaRepository.findAll();
 	}
 
-	
 }

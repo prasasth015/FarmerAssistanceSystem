@@ -1,7 +1,5 @@
 package com.cg.farmersystem.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product {
 	@Id
-	private int productId;
+	private Integer productId;
 	@Column(length = 50)
 	private String productName;
 	@Column(length = 150)
@@ -22,11 +20,11 @@ public class Product {
 		return "Products [productId=" + productId + ", proName=" + productName + "]";
 	}
 
-	public int getProductId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 
@@ -34,8 +32,8 @@ public class Product {
 		return productName;
 	}
 
-	public void setProductName(String proName) {
-		this.productName = proName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getProductDescription() {
@@ -48,56 +46,16 @@ public class Product {
 
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int productId, String productName, String productDescription) {
+	public Product(Integer productId, String productName, String productDescription) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productDescription = productDescription;
 
 	}
-
-	public static List<Product> viewProducts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//@Override
-//public String toString() {
-//	return "adminEntity [serviceId=" + productname+"]";
-//
-//}

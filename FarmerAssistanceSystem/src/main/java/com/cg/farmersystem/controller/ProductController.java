@@ -17,37 +17,36 @@ import com.cg.farmersystem.exception.ProductNotFoundException;
 import com.cg.farmersystem.model.Product;
 import com.cg.farmersystem.service.ProductService;
 
-
 @RestController
 
 @RequestMapping(path = "/api/v1")
 
 public class ProductController {
-	
+
 	@Autowired
 	private ProductService productService;
-	
-	// Method to fetch the product from the database
-		@GetMapping("/getproduct")
-		public List<Product> getAllProduct() {
-			return productService.getAllProduct();
-		}
-		
-	// Method to create a product
-		@PostMapping("/addproduct")
-		public ResponseEntity<List<Product>> insertProduct(@RequestBody Product product) {
-			List<Product> sq = productService.saveProduct(product);
 
-			return new ResponseEntity<List<Product>>(sq, HttpStatus.OK);
-		}
-		
-		// Method to delete product using product Id
-		@DeleteMapping("/deleteproduct/{productId}")
-		public String deleteProduct(@PathVariable(value = "productId") int productId) throws ProductNotFoundException {
-			Product product = productService.getProductById(productId)
-					.orElseThrow(() -> new ProductNotFoundException("No product found with this Id :" + productId));
-			productService.deleteProduct(product);
-			return "ProductNotFoundException.java Deleted";
-		}
+	// Method to fetch the product from the database
+	@GetMapping("/getproduct")
+	public List<Product> getAllProduct() {
+		return productService.getAllProduct();
+	}
+
+	// Method to create a product
+	@PostMapping("/addproduct")
+	public ResponseEntity<List<Product>> insertProduct(@RequestBody Product product) {
+		List<Product> sq = productService.saveProduct(product);
+
+		return new ResponseEntity<List<Product>>(sq, HttpStatus.OK);
+	}
+
+	// Method to delete product using product Id
+	@DeleteMapping("/deleteproduct/{productId}")
+	public String deleteProduct(@PathVariable(value = "productId") int productId) throws ProductNotFoundException {
+		Product product = productService.getProductById(productId)
+				.orElseThrow(() -> new ProductNotFoundException("No product found with this Id :" + productId));
+		productService.deleteProduct(product);
+		return "ProductNotFoundException.java Deleted";
+	}
 
 }

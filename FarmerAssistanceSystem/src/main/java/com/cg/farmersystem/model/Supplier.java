@@ -1,6 +1,7 @@
 package com.cg.farmersystem.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,32 +10,33 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "supplierregistration")
+@Table(name = "supplier_registration")
 public class Supplier {
-	
-	@NotNull(message="Value cannot be Null")
+
+	@NotNull(message = "Value cannot be Null")
 	@Size(max = 30)
 	private String supplierName;
-	
+
 	@Id
-	@NotNull(message="Value cannot be Null")
+	@NotNull(message = "Value cannot be Null")
 	@Size(max = 30)
-	@Column(unique=true)
+	@Column(unique = true)
 	private String supplierUserName;
 
-	@NotNull(message="Value cannot be Null")
+	@NotNull(message = "Value cannot be Null")
 	@Size(max = 100)
 	private String supplierAddress;
 
-	@NotNull(message="Value cannot be Null")
-	@Pattern(regexp="(^$|[0-9]{10})",message="Mobile number must be 10 digits")
+	@NotNull(message = "Value cannot be Null")
+	@Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
 	private long supplierContactNumber;
 
-	@NotNull(message="Value cannot be Null")
+	@NotNull(message = "Value cannot be Null")
 	@Size(max = 30)
+	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$)", message = "password must contain atleast one digit(0-9),atleast one lower case letter,atleast one uppercase letter,one special character (!,@,#), and password length must be minimum 8 and maximum 20 characters")
 	private String password;
 
-	@NotNull(message="Value cannot be Null")
+	@NotNull(message = "Value cannot be Null")
 	@Size(max = 30)
 	private String confirmPassword;
 
@@ -90,12 +92,11 @@ public class Supplier {
 	// default constructor
 	public Supplier() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	// parameterized constructor
-	public Supplier(String supplierName, String supplierUserName, String supplierAddress,
-			long supplierContactNumber, String password, String confirmPassword) {
+	public Supplier(String supplierName, String supplierUserName, String supplierAddress, long supplierContactNumber,
+			String password, String confirmPassword) {
 		super();
 		this.supplierName = supplierName;
 		this.supplierUserName = supplierUserName;

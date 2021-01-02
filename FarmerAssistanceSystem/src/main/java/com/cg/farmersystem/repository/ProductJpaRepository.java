@@ -5,13 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.farmersystem.model.Product;
 
-
-
 @Repository
 public interface ProductJpaRepository extends JpaRepository<Product,Integer> {
-//	
-//	Product findByProductId(Integer productId);
-//	
-//	public Optional<Product> getProductById(Integer productId);
 
 }

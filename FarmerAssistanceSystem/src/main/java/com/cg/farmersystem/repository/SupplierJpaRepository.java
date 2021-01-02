@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.farmersystem.model.Supplier;
 
 @Repository
-public interface SupplierJpaRepository extends JpaRepository<Supplier,String> {
-
+public interface SupplierJpaRepository extends JpaRepository<Supplier, String> {
 
 	Supplier findBySupplierUserNameAndPassword(String supplierUserName, String password);
 

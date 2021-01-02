@@ -6,17 +6,17 @@ import java.util.Optional;
 import com.cg.farmersystem.model.SupplierQuote;
 
 public interface SupplierQuoteService {
+	
 	List<SupplierQuote> getAllQuote();
 
-	public List<SupplierQuote> saveQuote(SupplierQuote quote);
+	public SupplierQuote saveQuote(SupplierQuote quote);
 
-	public void deleteQuote(SupplierQuote quote);
+	public SupplierQuote deleteQuote(SupplierQuote quote);
 
 	public Optional<SupplierQuote> getQuoteById(Integer quoteId);
 
 	public SupplierQuote updateQuote(SupplierQuote quote);
 
-	List<SupplierQuote> getProduct(String productName );
 }
 
 
@@ -42,4 +42,3 @@ public interface SupplierQuoteService {
 
 
 
-//public SupplierQuoteEntity addSupplierQuote(SupplierQuoteEntity sq) ;

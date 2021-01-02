@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.cg.farmersystem.model.Supplier;
 
 public interface SupplierService {
+	
 	List<Supplier> getAllSupplier();
 
 	public Supplier createSupplier(Supplier supplier);

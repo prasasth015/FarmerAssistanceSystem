@@ -2,6 +2,10 @@ package com.cg.farmersystem.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,17 +20,18 @@ import com.cg.farmersystem.exception.SupplierNotFoundException;
 import com.cg.farmersystem.model.Supplier;
 import com.cg.farmersystem.service.SupplierService;
 
-//import net.guides.springboot2.springboot2jpacrudexample.model.Employee;
-
 @RestController
-@RequestMapping(path="/api/v1")
+@RequestMapping(path = "/api/v1")
 public class SupplierController {
+
+	private static final Logger logger = LogManager.getLogger(SupplierController.class);
 
 	@Autowired
 	private SupplierService supplierService;
 
 	@PostMapping("/createSupplier")
-	public Supplier createupplier(@RequestBody Supplier supplier) throws SupplierExistException {
+	public Supplier createSupplier(@Valid @RequestBody Supplier supplier) throws SupplierExistException {
+		logger.info("in supplier controller");
 		boolean ifExist = supplierService.getSupplierById(supplier.getSupplierUserName()).isPresent();
 		if (ifExist) {
 			throw new SupplierExistException("Supplier Already present with this :" + supplier.getSupplierUserName());
@@ -36,9 +41,10 @@ public class SupplierController {
 	}
 
 	// method to fetch supplier details using supplier username
-	@GetMapping("/{supplierUserName}")
+	@GetMapping("getById/{supplierUserName}")
 	public ResponseEntity<Supplier> getSupplierById(@PathVariable(value = "supplierUserName") String supplierUserName)
 			throws SupplierNotFoundException {
+		logger.info("in getSupplierByID");
 		Supplier supplier = supplierService.getSupplierById(supplierUserName).orElseThrow(
 				() -> new SupplierNotFoundException("No Supplier found with this Id :" + supplierUserName));
 		return ResponseEntity.ok().body(supplier);
@@ -47,13 +53,15 @@ public class SupplierController {
 	// Method to fetch the list of suppliers
 	@GetMapping("/supplier")
 	public List<Supplier> getAllSupplier() {
+		logger.info("in getAllSupplier");
 		return supplierService.getAllSupplier();
 	}
 
-	// method for login
+	// method for supplier login
 	@GetMapping("/login/{supplierUserName}/{password}")
-	public ResponseEntity<Supplier> Login(@PathVariable(value = "supplierUserName") String supplierUserName,
+	public ResponseEntity<String> supplierLogin(@PathVariable(value = "supplierUserName") String supplierUserName,
 			@PathVariable(value = "password") String password) throws SupplierExistException {
+		logger.info("in supplier Login");
 		Supplier supplier = supplierService.findBySupplierUserNameAndPassword(supplierUserName, password);
 
 		if (supplier == null) {
@@ -61,52 +69,6 @@ public class SupplierController {
 					"No Supplier found with this UserName: " + supplierUserName + " and Password: " + password);
 		}
 
-		return ResponseEntity.ok().body(supplier);
+		return ResponseEntity.ok().body("Login Successful");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//@PostMapping("/addsupplier")
-//public Supplier addSupplier(@RequestBody Supplier supplier) {
-//	return supplierService.addSupplier(supplier);
-//}
-/*
- * @GetMapping("/supplier/{supplierUserName}") public
- * ResponseEntity<SupplierEntity> getSupplierByName String supplierUserName)
- * throws ResourceNotFoundException { //java8 // if employee==null throw new
- * ResourceNotFoundException("Employee not found for this id :: " +
- * employeeId)); SupplierEntity se = supplierRepo.findById(supplierUserName)
- * .orElseThrow(() -> new
- * ResourceNotFoundException("Employee not found for this id :: " +
- * supplierUserName)); return ResponseEntity.ok().body(se); }
- */
