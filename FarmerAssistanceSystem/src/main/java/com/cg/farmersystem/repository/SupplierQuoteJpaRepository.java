@@ -8,5 +8,4 @@ import com.cg.farmersystem.model.SupplierQuote;
 @Repository
 public interface SupplierQuoteJpaRepository extends JpaRepository<SupplierQuote, Integer> {
 
-
 }

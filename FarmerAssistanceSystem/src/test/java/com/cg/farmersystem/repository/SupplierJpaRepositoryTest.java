@@ -81,7 +81,6 @@ class SupplierJpaRepositoryTest {
 	void testFindBySupplierUserNameAndPassword() {
 		Supplier supplier = getSupplier();
 		Supplier check = supplierJpaRepository.findBySupplierUserNameAndPassword("kumar01", "kumar!");
-		//Supplier saveInDb = testEntityManager.persist(supplier);
 		Supplier getFromDb = supplierJpaRepository.findBySupplierUserNameAndPassword(supplier.getSupplierUserName(),
 				supplier.getPassword());
 		assertThat(getFromDb).isEqualTo(check);
