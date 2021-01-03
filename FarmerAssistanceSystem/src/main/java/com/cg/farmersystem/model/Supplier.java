@@ -33,7 +33,7 @@ public class Supplier {
 
 	@NotNull(message = "Value cannot be Null")
 	@Size(max = 30)
-	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$)", message = "password must contain atleast one digit(0-9),atleast one lower case letter,atleast one uppercase letter,one special character (!,@,#), and password length must be minimum 8 and maximum 20 characters")
+	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "password must contain atleast one digit(0-9),atleast one lower case letter,atleast one uppercase letter,one special character (!,@,#), and password length must be minimum 8 and maximum 20 characters")
 	private String password;
 
 	@NotNull(message = "Value cannot be Null")

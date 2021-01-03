@@ -91,7 +91,7 @@ class SupplierQuoteJpaRepositoryTest {
 		SupplierQuote getFromDb = supplierQuoteJpaRepository.save(quote2);
 		getFromDb.setQuotePrice(12000);
 		testEntityManager.persist(getFromDb);
-		assertNotEquals(getFromDb.getQuotePrice(), quote2);
+		assertNotEquals(quote2,getFromDb.getQuotePrice());
 	}
 
 	@Test

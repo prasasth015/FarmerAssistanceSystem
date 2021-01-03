@@ -6,5 +6,4 @@ public class SupplierExistException extends Exception{
 		super(message);
 	}
 	
-
 }

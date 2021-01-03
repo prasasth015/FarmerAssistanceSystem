@@ -17,30 +17,35 @@ import com.cg.farmersystem.repository.SupplierJpaRepository;
 @Transactional
 public class SupplierServiceImpl implements SupplierService {
 	private static final Logger logger = LogManager.getLogger(SupplierServiceImpl.class);
-	
+
 	@Autowired
 	private SupplierJpaRepository supplierJpaRepository;
-
+	
+	//for supplier registration
 	@Override
-	public List<Supplier> getAllSupplier() {
-		 logger.info("in supplier service getAllSupplier");
-		return supplierJpaRepository.findAll();
-	}
-
 	public Supplier createSupplier(Supplier supplier) {
-		 logger.info("in supplier service createSupplier");
+		logger.info("in supplier service createSupplier");
 		return supplierJpaRepository.save(supplier);
 	}
 
+	//to get all supplier details from the database
+	@Override
+	public List<Supplier> getAllSupplier() {
+		logger.info("in supplier service getAllSupplier");
+		return supplierJpaRepository.findAll();
+	}
+
+	//to get supplier by ID from the database
 	@Override
 	public Optional<Supplier> getSupplierById(String supplierUserName) {
-		 logger.info("in supplier service getSupplierById");
+		logger.info("in supplier service getSupplierById");
 		return supplierJpaRepository.findById(supplierUserName);
 	}
 
+	//for supplier login
 	@Override
 	public Supplier findBySupplierUserNameAndPassword(String supplierUserName, String password) {
-		 logger.info("in supplier service findBySupplierUserNameAndPassword");
+		logger.info("in supplier service findBySupplierUserNameAndPassword");
 		return supplierJpaRepository.findBySupplierUserNameAndPassword(supplierUserName, password);
 	}
 

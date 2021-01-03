@@ -93,7 +93,7 @@ class SupplierQuoteServiceTest {
 
 		Optional<SupplierQuote> li = supplierQuoteService.getQuoteById(1);
 		supplierQuoteService.deleteQuote(quote);
-		assertNotEquals(quote, li);
+		assertNotEquals(li,quote);
 
 	}
 

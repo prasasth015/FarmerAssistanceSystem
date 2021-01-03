@@ -30,7 +30,7 @@ class SupplierJpaRepositoryTest {
 		Supplier supplier = getSupplier();
 		Supplier saveInDb = testEntityManager.persist(supplier);
 		Supplier getFromDb = supplierJpaRepository.save(supplier);
-		assertThat(getFromDb.equals(saveInDb));
+		assertThat(getFromDb).isEqualTo(saveInDb);
 	}
 
 	@Test
@@ -81,10 +81,10 @@ class SupplierJpaRepositoryTest {
 	void testFindBySupplierUserNameAndPassword() {
 		Supplier supplier = getSupplier();
 		Supplier check = supplierJpaRepository.findBySupplierUserNameAndPassword("kumar01", "kumar!");
-		Supplier saveInDb = testEntityManager.persist(supplier);
+		//Supplier saveInDb = testEntityManager.persist(supplier);
 		Supplier getFromDb = supplierJpaRepository.findBySupplierUserNameAndPassword(supplier.getSupplierUserName(),
 				supplier.getPassword());
-		assertThat(getFromDb.equals(check));
+		assertThat(getFromDb).isEqualTo(check);
 
 	}
 
